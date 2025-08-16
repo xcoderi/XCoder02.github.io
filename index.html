@@ -1,0 +1,386 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Home | Xcoderi — Custom Web, AI & IoT</title>
+  <meta name="description" content="Custom web apps (Firebase, Node.js, SQL, PHP), AI systems, and pre‑configured ESP32 solutions. High‑performance, secure, SEO‑optimized, fully custom development.">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='50' fill='%237c5cff'/%3E%3Ctext x='50' y='60' font-size='56' text-anchor='middle' fill='white' font-family='Arial'%3EX%3C/text%3E%3C/svg%3E">
+  <meta name="robots" content="index,follow">
+  <meta name="theme-color" content="#0b0f14">
+  <meta property="og:title" content="Home | Xcoderi">
+  <meta property="og:description" content="End‑to‑end development: Firebase, Node.js, SQL, PHP, AI & ESP32.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://xcoderi.github.io/index.html">
+  <meta property="og:image" content="https://xcoderi.github.io/og-cover.png">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "Xcoderi",
+    "url": "https://xcoderi.github.io",
+    "logo": "https://xcoderi.github.io/og-cover.png",
+    "sameAs": [
+      "https://facebook.com/YOUR_PAGE",
+      "https://wa.me/YOUR_NUMBER"
+    ],
+    "contactPoint": [ {
+      "@type": "ContactPoint",
+      "contactType": "customer support",
+      "email": "hello@your-domain.com"
+    } ]
+  }
+  </script>
+  <style>
+/* 
+  Custom responsive CSS (no frameworks).
+  Modern, accessible, mobile-first with fluid type, dark-mode support, and reduced motion handling.
+*/
+:root{
+  --bg: #0b0f14;
+  --bg-soft: #0f1621;
+  --card: #121a26;
+  --text: #e6edf3;
+  --muted:#a9b6c5;
+  --brand:#7c5cff;
+  --brand-2:#00e5a8;
+  --ring: 0 0 0 3px rgba(124,92,255,.25);
+  --radius: 16px;
+  --maxw: 1100px;
+  color-scheme: dark;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0;
+  font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji";
+  color:var(--text);
+  background: radial-gradient(1200px 800px at 80% -10%, rgba(124,92,255,.15), transparent 40%),
+              radial-gradient(1200px 800px at 10% -20%, rgba(0,229,168,.12), transparent 40%),
+              var(--bg);
+  line-height:1.6;
+}
+a{color:var(--text); text-decoration:none}
+a:hover{ color: var(--brand)}
+.container{max-width:var(--maxw); margin:0 auto; padding:clamp(14px,2vw,24px)}
+header{
+  position:sticky; top:0; z-index:50;
+  backdrop-filter: blur(8px);
+  background: color-mix(in hsl, var(--bg) 75%, transparent);
+  border-bottom: 1px solid rgba(255,255,255,.06);
+}
+.nav{
+  display:flex; align-items:center; justify-content:space-between; gap:12px;
+}
+.nav a.brand{
+  font-weight:800; letter-spacing:.3px; display:flex; align-items:center; gap:10px;
+}
+.badge{ padding:.25rem .6rem; background:linear-gradient(135deg,var(--brand),var(--brand-2)); border-radius:999px; font-size:.75rem }
+nav ul{display:flex; list-style:none; gap: clamp(10px, 2vw, 28px); margin:0; padding:0; align-items:center}
+nav a{opacity:.9}
+nav a.active, nav a:focus-visible{outline:none; border-bottom:2px solid var(--brand); padding-bottom:6px}
+.btn{
+  appearance:none; border:0; border-radius:999px; padding:.8rem 1.05rem; font-weight:700;
+  background:linear-gradient(135deg,var(--brand) 10%, var(--brand-2) 100%);
+  color:black; cursor:pointer; box-shadow: 0 8px 24px rgba(124,92,255,.25);
+}
+.btn:focus-visible{outline:none; box-shadow: var(--ring)}
+
+.hero{
+  display:grid; grid-template-columns: 1.1fr; gap:26px; align-items:center; padding: 32px 0 12px;
+}
+.hero h1{ font-size: clamp(28px, 5vw, 48px); line-height:1.1; margin:0 }
+.hero p{ font-size: clamp(16px, 2.2vw, 20px); color: var(--muted); margin: 6px 0 16px }
+.kpis{ display:grid; grid-template-columns: repeat(3,1fr); gap:12px; }
+.kpis .card{ background:var(--card); border:1px solid rgba(255,255,255,.06); border-radius: var(--radius); padding:14px 16px; text-align:center}
+.kpis .card h3{ margin:2px 0; font-size:clamp(20px,3vw,26px)}
+.kpis .card p{ margin:0; font-size:12px; color:var(--muted)}
+
+.section{ padding: clamp(18px, 3.2vw, 36px) 0 }
+.section h2{ font-size: clamp(22px, 3.2vw, 32px); margin: 0 0 12px }
+.grid{ display:grid; grid-template-columns: 1fr 1fr; gap: clamp(14px,2.8vw,24px)}
+
+.card{
+  background:linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.03));
+  border:1px solid rgba(255,255,255,.08);
+  border-radius: var(--radius);
+  padding: clamp(14px, 2vw, 20px);
+  box-shadow: 0 10px 28px rgba(0,0,0,.25);
+}
+.card h3{ margin:0 0 8px }
+.card p{ margin:0 0 8px; color:var(--muted)}
+
+.slider{
+  position:relative; overflow:hidden; border-radius: var(--radius);
+  border:1px solid rgba(255,255,255,.08); background:var(--card);
+}
+.slides{
+  display:flex; gap:0; overflow:auto; scroll-snap-type:x mandatory;
+  scroll-behavior:smooth;
+}
+.slide{
+  min-width:100%; scroll-snap-align:start; position:relative; display:grid; grid-template-columns:1fr; align-items:center;
+}
+.slide img{ width:100%; height: clamp(200px, 48vw, 480px); object-fit:cover; display:block; filter:saturate(1.1) contrast(1.02)}
+.slide .caption{
+  position:absolute; inset:auto 0 0 0; padding:16px; background: linear-gradient(180deg, transparent, rgba(0,0,0,.52));
+}
+.slider .dots{ position:absolute; inset:auto 0 8px 0; display:flex; justify-content:center; gap:8px}
+.slider .dots button{
+  width:9px; height:9px; border-radius:999px; border:0; background:rgba(255,255,255,.35); cursor:pointer
+}
+.slider .dots button.active{ background:white }
+
+.features{ display:grid; grid-template-columns: repeat(3,1fr); gap:12px }
+.feature{ padding:14px; border-radius: var(--radius); border:1px dashed rgba(255,255,255,.14) }
+.feature h4{ margin:0 0 6px }
+.feature p{ margin:0; color:var(--muted)}
+
+.cta{
+  display:flex; flex-wrap:wrap; gap:12px; align-items:center;
+  background:linear-gradient(135deg, rgba(124,92,255,.25), rgba(0,229,168,.20));
+  border:1px solid rgba(255,255,255,.14); padding:18px; border-radius: var(--radius);
+}
+
+footer{
+  margin-top: 40px;
+  padding: 24px 0 40px; color:var(--muted);
+  border-top:1px solid rgba(255,255,255,.08);
+}
+
+.socials{ display:flex; gap:10px; flex-wrap: wrap}
+.socials a{ padding:.6rem .8rem; border:1px solid rgba(255,255,255,.14); border-radius:999px }
+.socials a:hover{ border-color: white }
+
+/* Responsive */
+@media (max-width: 920px){
+  .grid{ grid-template-columns:1fr }
+  .features{ grid-template-columns:1fr 1fr }
+  .kpis{ grid-template-columns: 1fr 1fr 1fr }
+}
+@media (max-width: 640px){
+  .features{ grid-template-columns:1fr }
+  .hero{ padding-top: 18px }
+  nav ul{ gap: 12px; font-size: 14px }
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce){
+  html{ scroll-behavior:auto }
+}
+</style>
+</head>
+<body>
+  <header>
+    <div class="container nav">
+      <a class="brand" href="index.html" aria-label="Go to home">
+        <span class="badge">Xcoderi</span> <span>Custom Web • AI • IoT</span>
+      </a>
+      <nav aria-label="Main">
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="contact.html">Contact</a></li>
+          <li><a href="privacy.html">Privacy</a></li>
+          <li><a href="terms.html">Terms</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+  <main class="container">
+
+<section class="hero">
+  <div>
+    <h1>Hi, I’m Xcoderi — I build blazing‑fast, SEO‑friendly apps with <mark>Firebase</mark>, <mark>Node.js</mark>, <mark>SQL</mark>, <mark>PHP</mark>, custom <mark>AI</mark> & pre‑configured <mark>ESP32</mark> solutions.</h1>
+    <p>From prototypes to production systems, I deliver secure, maintainable, and responsive software for startups and businesses. No WordPress, no Joomla — fully custom engineering focused on performance, accessibility, and real outcomes.</p>
+    <div class="kpis">
+      <div class="card"><h3>100% Custom</h3><p>Clean code, no templates</p></div>
+      <div class="card"><h3>SEO‑Ready</h3><p>Ethical, indexable content</p></div>
+      <div class="card"><h3>Mobile‑First</h3><p>Fast on every device</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <h2>Recent Work — Animated Slider</h2>
+  <div class="slider" aria-roledescription="carousel" aria-label="Showcase">
+    <div class="slides">
+      <article class="slide">
+        <img data-src="https://images.unsplash.com/photo-1519389950473-47ba0277781c?w=1600" alt="Dashboard interface on laptop" width="1600" height="900" />
+        <div class="caption"><strong>Realtime dashboards</strong> — Firebase + Node.js analytics.</div>
+      </article>
+      <article class="slide">
+        <img data-src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=1600" alt="Developer desk with code on screen" width="1600" height="900" />
+        <div class="caption"><strong>Secure APIs</strong> — Express, SQL, PHP services.</div>
+      </article>
+      <article class="slide">
+        <img data-src="https://images.unsplash.com/photo-1518770660439-4636190af475?w=1600" alt="IoT board and ESP32 hardware" width="1600" height="900" />
+        <div class="caption"><strong>IoT & ESP32</strong> — Pre‑configured devices & OTA.</div>
+      </article>
+    </div>
+    <div class="dots" aria-label="Slide indicators"></div>
+  </div>
+</section>
+
+<section class="section grid">
+  <div class="card">
+    <h3>Services</h3>
+    <p>I provide end‑to‑end engineering: Firebase real‑time database apps, Node.js APIs, SQL and PHP backends, custom AI systems, and pre‑configured ESP32 hardware with MQTT, OTA updates, and dashboards.</p>
+    <ul>
+      <li>Design → Development → Deployment</li>
+      <li>Security, SEO, Accessibility (WCAG)</li>
+      <li>Monitoring, CI/CD, Documentation</li>
+    </ul>
+  </div>
+  <div class="card">
+    <h3>Why Choose Me</h3>
+    <p>Ethical, transparent processes with measurable results: Core Web Vitals, uptime SLOs, and conversion metrics. Clean, documented code you own.</p>
+    <div class="features">
+      <div class="feature"><h4>Custom WebApps</h4><p>Firebase, Node.js, SQL, PHP</p></div>
+      <div class="feature"><h4>AI Systems</h4><p>LLM, NLP, CV, RAG</p></div>
+      <div class="feature"><h4>ESP32 Kits</h4><p>Pre‑configured, secure, OTA</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="section card">
+  <h2>Technology Index & Topics I Work With</h2>
+  <p>Below is an index of technologies and topics I frequently implement for clients. This list makes the site more discoverable while remaining human‑readable and useful.</p>
+  <details>
+    <summary><strong>Open the full index (320+ tech topics)</strong></summary>
+    <p style="margin-top:8px">web development, frontend development, backend development, full stack, responsive design, mobile first, progressive web app, html5, css3, vanillajs, javascript, typescript, es6, async await, dom scripting, web animation, accessibility, aria, semantic html, seo optimization, technical seo, core web vitals, lighthouse score, schema markup, json ld, open graph, meta tags, sitemap, robots txt, canonical url, structured data, lazy loading, image optimization, webp, avif, cdn, oscp, csp header, https, ssl, tls, http2, http3, quic, perf budget, bundle optimization, code splitting, tree shaking, minification, compression, brotli, gzip, service worker, offline cache, push notifications, app shell, web sockets, server sent events, http streaming, edge functions, serverless, firebase, firebase realtime database, firebase auth, firebase hosting, cloud functions, firestore, storage rules, security rules, nodejs, express js, npm, pnpm, yarn, vite, webpack, rollup, parcel, babel, jest, vitest, playwright, cypress, unit testing, integration testing, end to end testing, tdd, bdd, git, github, github actions, ci cd, docker, containerization, kubernetes, devops, linux server, nginx, apache, reverse proxy, load balancing, auto scaling, horizontal scaling, vertical scaling, redis, memcached, sql, mysql, postgresql, sqlite, mariadb, database design, data modeling, orm, prisma, sequelize, typeorm, php, laravel, codeigniter, symfony, wordpress migration, headless cms, strapi, contentful, sanity, graphql, rest api, api gateway, rate limiting, jwt, oauth, session management, csrf protection, xss prevention, input validation, password hashing, bcrypt, argon2, encryption, rsa, aes, web security, owasp top 10, pen testing, vulnerability scanning, sast, dast, monitoring, logging, observability, slo, sla, error tracking, sentry, datadog, prometheus, grafana, alerting, uptime, status page, incident response, postmortem, root cause analysis, cloud, aws, gcp, azure, ec2, lambda, s3, cloudfront, rds, cloud run, app engine, cloudflare, workers, pages, kv, durable objects, queues, message broker, rabbitmq, apache kafka, mqtt, esp32, esp8266, iot, embedded systems, microcontrollers, firmware, rtos, mqtt over tls, ota updates, sensor integration, edge ai, computer vision, opencv, image recognition, object detection, nlp, natural language processing, chatbot, custom ai, machine learning, deep learning, neural networks, tensorflow, pytorch, onnx, scikit learn, xgboost, lightgbm, model serving, rest inference, grpc, llm integration, rag, vector database, pinecone, weaviate, milvus, faiss, semantic search, embeddings, openai api, anthropic, cohere, llama, prompt engineering, function calling, agents, automation, workflow automation, zaps, nocode integration, zapier, make integromat, airtable, data pipeline, etl, elt, dbt, bigquery, snowflake, data warehouse, lakehouse, delta lake, apache spark, databricks, stream processing, batch processing, cron jobs, scheduling, rate limiter, throttling, backpressure, webhooks, stripe, paypal, razorpay, payment gateway, subscriptions, saas, multitenant, role based access control, rbac, audit logs, gdpr, privacy policy, terms of service, cookie consent, analytics, privacy friendly analytics, plausible, umami, google analytics, tag manager, heatmaps, ab testing, feature flags, launchdarkly, unleash, growth engineering, conversion rate optimization, cro, lead generation, crm, hubspot, salesforce, email marketing, transactional email, sendgrid, mailgun, postmark, dkim, spf, dmarc, domain management, dns, route53, cloud dns, domain verification, custom domain, github pages, static site, jamstack, isomorphic, ssr, csr, isr, hybrid rendering, astro, next steps, roadmap, consulting, prototyping, mvp, product design, ui ux, design system, component library, tailwind concepts, css variables, grid layout, flexbox, clamp, container queries, media queries, dark mode, prefers reduced motion, keyboard navigation, screen reader, form validation, client side validation, server side validation, sanitization, rate control, captcha, honeypot, anti spam, content moderation, markdown, mdx, documentation, api docs, changelog, release notes, versioning, semantic versioning, commit lint, conventional commits, code review, pull request, branching strategy, git flow, trunk based development, feature branching, hotfix, rollback, blue green deploy, canary release, a b testing, feature experiments, user research, usability testing, heuristic evaluation, journey mapping, persona, wireframes, low fidelity, high fidelity, clickable prototype, figma, design handoff, pixel perfect, performance optimization, time to first byte, first contentful paint, largest contentful paint, total blocking time, cumulative layout shift, interaction to next paint, lazy hydrate, partial hydration, islands architecture, edge rendering, global cdn, dns prefetch, preconnect, prefetch, prerender, http cache, etag, immutable assets, code quality, linting, eslint, prettier, stylelint, commit hooks, husky, precommit, postcommit, task runner, makefile, npm scripts, documentation site, knowledge base, support portal, ticketing, helpdesk, sla tracking, education, edtech, fintech, healthtech, ecommerce, marketplace, portfolio website, business website, landing page, micro site, blog platform, news site, headless blog, search engine, full text search, algolia, meilisearch, elastic search, analytics dashboard, admin panel, cms migration, legacy modernization, digital transformation, api integration, third party api, sms gateway, twilio, nexmo, send otp, 2fa, push messaging, web push, mobile push, pwa install, add to home screen, manifest, icons, splash screen, svg, canvas, webgl, three js, charts, d3 js, recharts concepts, map, leaflet, mapbox concepts, geolocation, geofencing, routing, directions api, travel time, delivery tracking, order management, inventory system, erp integration, crm integration, hrms integration, billing system, invoice, receipt, reporting, pdf generation, csv export, excel export, import tool, migration tool, sso, saml, ldap, access management, policy engine, opa, open policy agent, feature toggle, environment variables, secrets, vault, secret manager, kms, key rotation, backup, disaster recovery, high availability, fault tolerance.</p>
+  </details>
+</section>
+
+  </main>
+  <footer class="container" role="contentinfo">
+    <div class="cta" aria-label="Quick contact">
+      <strong>Ready to build?</strong>
+      <a class="btn" href="tel:+1234567890" aria-label="Call now">Call Now</a>
+      <a class="btn" href="https://wa.me/YOUR_NUMBER" target="_blank" rel="noopener" aria-label="Chat on WhatsApp">WhatsApp</a>
+      <a class="btn" href="https://facebook.com/YOUR_PAGE" target="_blank" rel="noopener" aria-label="Open Facebook">Facebook</a>
+      <a class="btn" href="contact.html" aria-label="Open contact form">Contact Form</a>
+    </div>
+    <p style="margin-top:10px">© <span id="year"></span> Xcoderi. All rights reserved.</p>
+  </footer>
+  <script>
+// VanillaJS utilities
+const qs = (s, el=document) => el.querySelector(s);
+const qsa = (s, el=document) => [...el.querySelectorAll(s)];
+const on = (el, evt, fn) => el.addEventListener(evt, fn);
+
+// Active nav link
+(() => {
+  const path = location.pathname.replace(/\/+$/,'') || '/index.html';
+  qsa('nav a').forEach(a => {
+    const href = a.getAttribute('href');
+    if (href && path.endsWith(href)) a.classList.add('active');
+  });
+})();
+
+// Simple autoplay slider
+(() => {
+  const slider = qs('.slider');
+  if(!slider) return;
+  const track = qs('.slides', slider);
+  const slides = qsa('.slide', track);
+  const dots = qs('.dots', slider);
+  let idx = 0, autoscroll;
+
+  // Create dots
+  slides.forEach((_,i) => {
+    const b = document.createElement('button');
+    if(i===0) b.classList.add('active');
+    on(b,'click', () => go(i, true));
+    dots.appendChild(b);
+  });
+
+  function go(i, user=false){
+    idx = (i + slides.length) % slides.length;
+    dots.childNodes.forEach((d,j)=> d.classList.toggle('active', j===idx));
+    track.scrollTo({left: slider.clientWidth * idx, behavior: user?'smooth':'auto'});
+  }
+
+  function start(){
+    stop();
+    autoscroll = setInterval(() => go(idx+1), 5000);
+  }
+  function stop(){ if(autoscroll) clearInterval(autoscroll); }
+
+  on(track, 'pointerdown', stop);
+  on(track, 'pointerup', start);
+  on(document, 'visibilitychange', () => document.hidden ? stop() : start());
+  start();
+})();
+
+// Lazy load images using IntersectionObserver
+(() => {
+  const imgs = qsa('img[data-src]');
+  if(!('IntersectionObserver' in window)) {
+    imgs.forEach(img => img.src = img.dataset.src);
+    return;
+  }
+  const io = new IntersectionObserver((entries, obs) => {
+    entries.forEach(e => {
+      if(e.isIntersecting){
+        const img = e.target;
+        img.src = img.dataset.src;
+        img.removeAttribute('data-src');
+        obs.unobserve(img);
+      }
+    });
+  });
+  imgs.forEach(img => io.observe(img));
+})();
+
+// Firebase contact form (Realtime Database)
+async function initFirebaseAndBindForm(){
+  const form = document.getElementById('contact-form');
+  if(!form) return;
+
+  // Replace with your Firebase web app config
+  const firebaseConfig = {
+    apiKey: "YOUR_API_KEY",
+    authDomain: "YOUR_PROJECT_ID.firebaseapp.com",
+    databaseURL: "https://YOUR_PROJECT_ID-default-rtdb.firebaseio.com",
+    projectId: "YOUR_PROJECT_ID",
+    storageBucket: "YOUR_PROJECT_ID.appspot.com",
+    messagingSenderId: "YOUR_SENDER_ID",
+    appId: "YOUR_APP_ID"
+  };
+
+  // Dynamic module imports (Firebase v10 modular SDK)
+  const { initializeApp } = await import("https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js");
+  const { getDatabase, ref, push, serverTimestamp } = await import("https://www.gstatic.com/firebasejs/10.12.2/firebase-database.js");
+
+  const app = initializeApp(firebaseConfig);
+  const db = getDatabase(app);
+
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const data = Object.fromEntries(new FormData(form).entries());
+    // Basic validation
+    if(!data.name || !data.email || !data.message){
+      alert('Please fill name, email and message.'); return;
+    }
+    const payload = {
+      ...data,
+      createdAt: Date.now(),
+      serverTime: serverTimestamp(),
+      userAgent: navigator.userAgent
+    };
+    try{
+      await push(ref(db, 'contacts'), payload);
+      form.reset();
+      alert('Thanks! Your message was sent. We will reply shortly.');
+    }catch(err){
+      console.error(err);
+      alert('Could not send. Please try again later.');
+    }
+  });
+}
+document.addEventListener('DOMContentLoaded', initFirebaseAndBindForm);
+</script>
+  <script>document.getElementById('year').textContent = new Date().getFullYear();</script>
+</body>
+</html>
